@@ -18,11 +18,11 @@ data:
   repositories: |
     - url: https://github.com/argoproj/argocd-example-apps
     - url: https://github.com/niiku/demo-argocd-repo
-  resource.exclusions: |-
+  resource.exclusions: |
     - apiGroups:
-      - "project.openshift.io"
-      kinds:
-      - "Project"
+      - project.openshift.io
       clusters:
-      - "*"
+      - '*'
+      kinds:
+      - Project
   url: 'https://argocd.cloud.nikio.io'

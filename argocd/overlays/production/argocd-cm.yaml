@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  dex.config: |-
+    connectors:
+    - type: oidc
+      id: google
+      name: Google
+      config:
+        issuer: https://accounts.google.com
+        clientID: 304686061649-9drnnptec16lfbk2qoo77s96ievtr0qu.apps.googleusercontent.com
+        clientSecret: $dex.google.clientSecret
+        redirectURI: http://127.0.0.1:5556/callback
+        hostedDomains:
+        - nikio.io
+  repositories: |
+    - url: https://github.com/argoproj/argocd-example-apps
+    - url: https://github.com/niiku/demo-argocd-repo
+  resource.exclusions: |-
+    - apiGroups:
+      - "project.openshift.io"
+      kinds:
+      - "Project"
+      clusters:
+      - "*"
+  url: 'https://argocd.cloud.nikio.io'
